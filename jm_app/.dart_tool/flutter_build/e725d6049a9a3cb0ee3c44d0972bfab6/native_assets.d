@@ -1,0 +1,1 @@
+ C:\\Users\\jube2\\OneDrive\\Documentos\\Proyectos\\Proyecto\ JM\\Project\\jm_app\\.dart_tool\\flutter_build\\e725d6049a9a3cb0ee3c44d0972bfab6\\native_assets.yaml: 

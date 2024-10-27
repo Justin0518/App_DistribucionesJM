@@ -1,0 +1,45 @@
+name: jm_app
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=2.5.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.19.0
+  image_picker: ^0.8.4+4
+  http: ^0.13.3
+  flutter_screenutil: ^5.0.0+2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  leak_tracker_flutter_testing: ^3.0.3
+
+dependency_overrides:
+  collection: ^1.19.0
+  leak_tracker: ^10.0.5
+  lints: ^4.0.0
+  material_color_utilities: ^0.12.0
+  meta: ^1.15.0
+  test_api: ^0.7.2
+  vm_service: ^14.2.4
+
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/images/logo.png
+    - assets/images/fondo.jpg
+    - assets/images/loguito.png
+    - assets/iconos/categoria.png
+    - assets/images/proceso.png
+    - assets/images/entregado.png
+    - assets/images/product_image.png

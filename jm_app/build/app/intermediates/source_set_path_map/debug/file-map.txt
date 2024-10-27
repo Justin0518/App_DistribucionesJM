@@ -1,0 +1,25 @@
+com.example.jm_app-core-runtime-2.2.0-0 C:\Users\jube2\.gradle\caches\transforms-3\0f877a570394a12cc35ff27489f11c26\transformed\core-runtime-2.2.0\res
+com.example.jm_app-jetified-window-java-1.0.0-beta04-1 C:\Users\jube2\.gradle\caches\transforms-3\2a215381204751055df81b6269e717b7\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.jm_app-core-1.13.1-2 C:\Users\jube2\.gradle\caches\transforms-3\2f6a5506f4dac22f7ab67b13b215ea43\transformed\core-1.13.1\res
+com.example.jm_app-lifecycle-livedata-2.6.2-3 C:\Users\jube2\.gradle\caches\transforms-3\4ac619b9deba4a1fa8987b5cd7ce3b2f\transformed\lifecycle-livedata-2.6.2\res
+com.example.jm_app-jetified-startup-runtime-1.1.1-4 C:\Users\jube2\.gradle\caches\transforms-3\69635902d600ff315c2d2b7f75af662f\transformed\jetified-startup-runtime-1.1.1\res
+com.example.jm_app-lifecycle-livedata-core-2.6.2-5 C:\Users\jube2\.gradle\caches\transforms-3\6aee316721cde10eee602b1ec4b1a4a6\transformed\lifecycle-livedata-core-2.6.2\res
+com.example.jm_app-lifecycle-runtime-2.6.2-6 C:\Users\jube2\.gradle\caches\transforms-3\7628447021ddaf60af1b9170edc954e9\transformed\lifecycle-runtime-2.6.2\res
+com.example.jm_app-jetified-activity-1.9.1-7 C:\Users\jube2\.gradle\caches\transforms-3\84f9a2a8e90bc49cea8eb6f83b8fa2e7\transformed\jetified-activity-1.9.1\res
+com.example.jm_app-jetified-lifecycle-viewmodel-savedstate-2.6.2-8 C:\Users\jube2\.gradle\caches\transforms-3\9284d5dbf531e8af2d4296bbf056c51a\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.2\res
+com.example.jm_app-jetified-savedstate-1.2.1-9 C:\Users\jube2\.gradle\caches\transforms-3\93b9d15e098df96a93b7a4fb1262fd3b\transformed\jetified-savedstate-1.2.1\res
+com.example.jm_app-lifecycle-viewmodel-2.6.2-10 C:\Users\jube2\.gradle\caches\transforms-3\b44e82f04ca2fbbb378f070b4fb3afd1\transformed\lifecycle-viewmodel-2.6.2\res
+com.example.jm_app-jetified-core-ktx-1.13.1-11 C:\Users\jube2\.gradle\caches\transforms-3\b977d140845cfa8829de711262a9ed75\transformed\jetified-core-ktx-1.13.1\res
+com.example.jm_app-jetified-annotation-experimental-1.4.0-12 C:\Users\jube2\.gradle\caches\transforms-3\bd9b8afb5ccab932cf8ed25b1b7c2f57\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.jm_app-jetified-profileinstaller-1.3.1-13 C:\Users\jube2\.gradle\caches\transforms-3\e852edee255e4ba7fa4d5b58ba237ddb\transformed\jetified-profileinstaller-1.3.1\res
+com.example.jm_app-jetified-window-1.0.0-beta04-14 C:\Users\jube2\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\res
+com.example.jm_app-debug-15 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\android\app\src\debug\res
+com.example.jm_app-main-16 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\android\app\src\main\res
+com.example.jm_app-pngs-17 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\app\generated\res\pngs\debug
+com.example.jm_app-resValues-18 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\app\generated\res\resValues\debug
+com.example.jm_app-rs-19 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\app\generated\res\rs\debug
+com.example.jm_app-mergeDebugResources-20 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.jm_app-mergeDebugResources-21 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.jm_app-merged_res-22 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\app\intermediates\merged_res\debug
+com.example.jm_app-packaged_res-23 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\flutter_plugin_android_lifecycle\intermediates\packaged_res\debug
+com.example.jm_app-packaged_res-24 C:\Users\jube2\OneDrive\Documentos\Proyectos\Proyecto JM\Project\jm_app\build\image_picker_android\intermediates\packaged_res\debug
