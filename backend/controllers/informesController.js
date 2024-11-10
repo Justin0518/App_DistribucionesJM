@@ -98,14 +98,35 @@ exports.obtenerClientesActivos = async (req, res) => {
         $group: {
           _id: "$clienteId", // Agrupar por clienteId
         }
+      },
+      {
+        $lookup: {
+          from: "clientes", // Nombre de la colección de clientes
+          localField: "_id",
+          foreignField: "_id",
+          as: "detallesCliente"
+        }
+      },
+      {
+        $unwind: "$detallesCliente" // Descomponer el array de detalles de cliente
+      },
+      {
+        $project: {
+          _id: 0,
+          nombres: { $concat: ["$detallesCliente.nombres", " ", "$detallesCliente.apellidos"] },
+          email: "$detallesCliente.email"
+        }
       }
     ]);
 
     res.status(200).json({
       totalClientes,
-      clientesActivos: clientesActivos.length // Cantidad de clientes activos
+      clientesActivos: clientesActivos.length, // Cantidad de clientes activos
+      detallesClientesActivos: clientesActivos // Lista de clientes activos con sus detalles
     });
   } catch (error) {
+    console.error('Error al obtener los clientes activos:', error);
     res.status(500).json({ message: 'Error al obtener los clientes activos', error });
   }
 };
+

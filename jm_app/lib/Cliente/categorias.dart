@@ -32,7 +32,7 @@ class _CategoriasState extends State<Categorias> {
   // Función para obtener las categorías desde el backend
   Future<void> fetchCategorias() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/categorias/'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/categorias/'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -67,7 +67,7 @@ class _CategoriasState extends State<Categorias> {
         isLoading = true; // Mostrar indicador de carga
         categoriaSeleccionadaNombre = categoriaNombre; // Guardar el nombre de la categoría seleccionada
       });
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/subcategorias/$categoriaId'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/subcategorias/$categoriaId'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -241,7 +241,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
   Future<void> agregarProductoAlCarrito(String clienteId, String productId, int cantidad) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.247.186:8081/carrito/agregar'), // Endpoint para agregar productos al carrito
+        Uri.parse('http://192.168.39.186:8081/carrito/agregar'), // Endpoint para agregar productos al carrito
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'clienteId': clienteId, // Cliente que añade el producto
@@ -269,7 +269,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
 Future<void> fetchProductos() async {
   try {
     print("Fetching products for subcategory ID: ${widget.subcategoriaId}");
-    final response = await http.get(Uri.parse('http://192.168.247.186:8081/v1/subcategoria/${widget.subcategoriaId.trim()}'));
+    final response = await http.get(Uri.parse('http://192.168.39.186:8081/v1/subcategoria/${widget.subcategoriaId.trim()}'));
     
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -514,7 +514,7 @@ Widget _buildProductCard(Map<String, dynamic> producto) {
     },
     child: Container(
       width: 160, // Ajusta el ancho para cartas más grandes
-      margin: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 20.0),
+      margin: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 15.0),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color(0xFFE4E4E4)),
@@ -631,7 +631,7 @@ class _DetalleProductoState extends State<DetalleProducto> {
   Future<void> fetchProducto() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.247.186:8081/v1/products/${widget.productId}'), // Ajusta la URL según tu backend
+        Uri.parse('http://192.168.39.186:8081/v1/products/${widget.productId}'), // Ajusta la URL según tu backend
       );
 
       if (response.statusCode == 200) {
@@ -654,7 +654,7 @@ class _DetalleProductoState extends State<DetalleProducto> {
   Future<void> agregarProductoAlCarrito() async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.247.186:8081/carrito/agregar'),
+        Uri.parse('http://192.168.39.186:8081/carrito/agregar'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'clienteId': widget.clienteId,

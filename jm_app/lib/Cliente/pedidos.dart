@@ -29,7 +29,7 @@ class _PedidosState extends State<Pedidos> {
   // Función para obtener los pedidos del cliente desde el backend
   Future<void> fetchPedidos() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/pedidos/cliente/${widget.clienteId}'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/pedidos/cliente/${widget.clienteId}'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -357,7 +357,7 @@ class _DetallePedidoClienteState extends State<DetallePedidoCliente> {
   // Función para obtener los detalles del pedido desde el backend
   Future<void> fetchDetallePedido() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/pedidos/${widget.pedidoId}'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/pedidos/${widget.pedidoId}'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {

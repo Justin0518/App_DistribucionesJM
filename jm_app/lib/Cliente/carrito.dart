@@ -38,7 +38,7 @@ class _CarritoState extends State<Carrito> {
 Future<void> vaciarCarrito() async {
   try {
     final response = await http.put(
-      Uri.parse('http://192.168.247.186:8081/carrito/vaciar/${widget.clienteId}'),
+      Uri.parse('http://192.168.39.186:8081/carrito/vaciar/${widget.clienteId}'),
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -70,7 +70,7 @@ Future<void> vaciarCarrito() async {
     // Continúa con el proceso de confirmar pedido
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.247.186:8081/compras/agregar'),
+        Uri.parse('http://192.168.39.186:8081/compras/agregar'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'clienteId': widget.clienteId,
@@ -128,7 +128,7 @@ Future<void> vaciarCarrito() async {
   // Función para obtener los productos del carrito desde el backend
   Future<void> fetchProductosCarrito() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/carrito/${widget.clienteId}'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/carrito/${widget.clienteId}'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -158,7 +158,7 @@ Future<void> vaciarCarrito() async {
 Future<void> actualizarCantidadProducto(String productoId, int nuevaCantidad) async {
   try {
     final response = await http.put(
-      Uri.parse('http://192.168.247.186:8081/carrito/actualizar'),
+      Uri.parse('http://192.168.39.186:8081/carrito/actualizar'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'clienteId': widget.clienteId,  // Asegúrate de enviar clienteId
@@ -183,7 +183,7 @@ Future<void> actualizarCantidadProducto(String productoId, int nuevaCantidad) as
   // Función para eliminar un producto del carrito
   Future<void> eliminarProducto(String productoId) async {
     try {
-      final response = await http.delete(Uri.parse('http://192.168.247.186:8081/carrito/${widget.clienteId}/producto/$productoId'));
+      final response = await http.delete(Uri.parse('http://192.168.39.186:8081/carrito/${widget.clienteId}/producto/$productoId'));
       if (response.statusCode == 200) {
         setState(() {
           productosCarrito.removeWhere((producto) => producto['_id'] == productoId);

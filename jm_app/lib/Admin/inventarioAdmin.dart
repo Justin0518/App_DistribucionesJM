@@ -24,7 +24,7 @@ class _InventarioState extends State<InventarioAdmin> {
 
   Future<void> fetchProductos() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/v1/products/'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/v1/products/'));
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
@@ -55,7 +55,7 @@ class _InventarioState extends State<InventarioAdmin> {
   Future<void> updateProducto(String id, bool nuevoEstado) async {
     try {
       final response = await http.put(
-        Uri.parse('http://192.168.247.186:8081/v1/products/$id'),
+        Uri.parse('http://192.168.39.186:8081/v1/products/$id'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -73,14 +73,26 @@ class _InventarioState extends State<InventarioAdmin> {
       print('Error en la conexión o actualización: $error');
     }
   }
+void toggleProducto(int index, List<Map<String, dynamic>> productosFiltrados) {
+  // Encuentra el producto en la lista original por su ID
+  String productId = productosFiltrados[index]['_id'];
+  int originalIndex = productos.indexWhere((producto) => producto['_id'] == productId);
 
-  void toggleProducto(int index) {
+  if (originalIndex != -1) {
     setState(() {
-      productos[index]['activo'] = !productos[index]['activo'];
+      // Cambia el estado del producto en la lista original
+      productos[originalIndex]['activo'] = !productos[originalIndex]['activo'];
+
+      // Actualiza también la lista filtrada (opcional)
+      productosFiltrados[index]['activo'] = productos[originalIndex]['activo'];
     });
 
-    updateProducto(productos[index]['_id'], productos[index]['activo']);
+    // Llama a la función de actualización para sincronizar con el backend
+    updateProducto(productId, productos[originalIndex]['activo']);
+  } else {
+    print('Error: No se encontró el producto en la lista original');
   }
+}
 
 
   // Filtrar productos por búsqueda y estado (activo/inactivo)
@@ -402,7 +414,7 @@ void _showFilterOptions() {
                           trailing: Switch(
                             value: productosFiltrados[index]['activo'],
                             onChanged: (value) {
-                              toggleProducto(index);
+                              toggleProducto(index, productosFiltrados);
                             },
                             activeColor: Colors.green,
                             inactiveThumbColor: Colors.red,
@@ -474,7 +486,7 @@ class _AgregarProductoState extends State<AgregarProducto> {
   }
 
   Future<void> fetchCategorias() async {
-    final response = await http.get(Uri.parse('http://192.168.247.186:8081/categorias/'));
+    final response = await http.get(Uri.parse('http://192.168.39.186:8081/categorias/'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       setState(() {
@@ -492,7 +504,7 @@ class _AgregarProductoState extends State<AgregarProducto> {
   }
 
   Future<void> fetchSubcategorias(String categoriaId) async {
-    final response = await http.get(Uri.parse('http://192.168.247.186:8081/subcategorias/$categoriaId'));
+    final response = await http.get(Uri.parse('http://192.168.39.186:8081/subcategorias/$categoriaId'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       setState(() {
@@ -524,7 +536,7 @@ class _AgregarProductoState extends State<AgregarProducto> {
       // Crear la solicitud multipart para enviar datos junto con la imagen
       var request = http.MultipartRequest(
         'POST', 
-        Uri.parse('http://192.168.247.186:8081/v1/products')
+        Uri.parse('http://192.168.39.186:8081/v1/products')
       );
 
       // Agregar los campos de texto
@@ -838,7 +850,7 @@ class _DetalleProductoState extends State<DetallesProducto> {
   // Función para obtener los detalles del producto desde la base de datos
   Future<void> fetchProducto(String id) async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/v1/products/$id'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/v1/products/$id'));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
@@ -879,7 +891,7 @@ class _DetalleProductoState extends State<DetallesProducto> {
   }
 
   Future<void> fetchCategorias() async {
-    final response = await http.get(Uri.parse('http://192.168.247.186:8081/categorias/'));
+    final response = await http.get(Uri.parse('http://192.168.39.186:8081/categorias/'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       setState(() {
@@ -896,7 +908,7 @@ class _DetalleProductoState extends State<DetallesProducto> {
   }
 
   Future<void> fetchSubcategorias(String categoriaId) async {
-    final response = await http.get(Uri.parse('http://192.168.247.186:8081/subcategorias/$categoriaId'));
+    final response = await http.get(Uri.parse('http://192.168.39.186:8081/subcategorias/$categoriaId'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       setState(() {
@@ -917,7 +929,7 @@ class _DetalleProductoState extends State<DetallesProducto> {
     try {
       var request = http.MultipartRequest(
         'PUT',
-        Uri.parse('http://192.168.247.186:8081/v1/products/${widget.productId}'),
+        Uri.parse('http://192.168.39.186:8081/v1/products/${widget.productId}'),
       );
 
       // Agregar los campos de texto
@@ -973,7 +985,7 @@ class _DetalleProductoState extends State<DetallesProducto> {
   Future<void> eliminarProducto() async {
     try {
       final response = await http.delete(
-        Uri.parse('http://192.168.247.186:8081/v1/products/${widget.productId}'),
+        Uri.parse('http://192.168.39.186:8081/v1/products/${widget.productId}'),
       );
 
       if (response.statusCode == 200) {

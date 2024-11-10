@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       isLoading = true;
     });
-    final url = Uri.parse('http://192.168.247.186:8081/clientes/login'); // URL del backend para autenticar cliente
+    final url = Uri.parse('http://192.168.39.186:8081/clientes/login'); // URL del backend para autenticar cliente
 
     try {
       final response = await http.post(
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
     isLoading = true;
   });
   
-  final url = Uri.parse('http://192.168.247.186:8081/admin/login'); // Endpoint para administradores
+  final url = Uri.parse('http://192.168.39.186:8081/admin/login'); // Endpoint para administradores
 
   try {
     final response = await http.post(

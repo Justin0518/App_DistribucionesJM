@@ -24,7 +24,7 @@ class _PedidosAdminState extends State<PedidosAdmin> {
   // Función para obtener pedidos del backend
   Future<void> fetchPedidos() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/pedidos/')); // URL del backend
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/pedidos/')); // URL del backend
 
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
@@ -181,7 +181,7 @@ class _PedidosAdminState extends State<PedidosAdmin> {
     // Función para obtener el detalle de un pedido específico
   Future<Map<String, dynamic>?> fetchDetallePedido(String pedidoId) async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/pedidos/$pedidoId'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/pedidos/$pedidoId'));
       if (response.statusCode == 200) {
         return json.decode(response.body); // Detalles del pedido
       } else {
@@ -199,7 +199,7 @@ class _PedidosAdminState extends State<PedidosAdmin> {
     try {
       print('Actualizando el pedido $pedidoId con estado $nuevoEstado'); 
       final response = await http.put(
-        Uri.parse('http://192.168.247.186:8081/pedidos/$pedidoId'),
+        Uri.parse('http://192.168.39.186:8081/pedidos/$pedidoId'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'estado': nuevoEstado}),
       );

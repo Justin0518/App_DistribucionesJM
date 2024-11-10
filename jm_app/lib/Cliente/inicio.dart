@@ -47,7 +47,7 @@ class _InicioState extends State<Inicio> {
   Future<void> agregarProductoAlCarrito(String clienteId, String productId, int cantidad) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.247.186:8081/carrito/agregar'), // Endpoint para agregar productos al carrito
+        Uri.parse('http://192.168.39.186:8081/carrito/agregar'), // Endpoint para agregar productos al carrito
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'clienteId': clienteId, // Cliente que añade el producto
@@ -82,7 +82,7 @@ class _InicioState extends State<Inicio> {
   // Función para obtener las categorías con sus productos desde el backend
   Future<void> fetchCategorias() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/categorias/con-productos')); // Cambiar la URL
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/categorias/con-productos')); // Cambiar la URL
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -591,7 +591,7 @@ class _DetalleProductoState extends State<DetalleProducto> {
   Future<void> fetchProducto() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.247.186:8081/v1/products/${widget.productId}'), // Ajusta la URL según tu backend
+        Uri.parse('http://192.168.39.186:8081/v1/products/${widget.productId}'), // Ajusta la URL según tu backend
       );
 
       if (response.statusCode == 200) {
@@ -614,7 +614,7 @@ class _DetalleProductoState extends State<DetalleProducto> {
   Future<void> agregarProductoAlCarrito() async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.247.186:8081/carrito/agregar'),
+        Uri.parse('http://192.168.39.186:8081/carrito/agregar'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'clienteId': widget.clienteId,
@@ -808,7 +808,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
   Future<void> agregarProductoAlCarrito(String clienteId, String productId, int cantidad) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.247.186:8081/carrito/agregar'), // Endpoint para agregar productos al carrito
+        Uri.parse('http://192.168.39.186:8081/carrito/agregar'), // Endpoint para agregar productos al carrito
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'clienteId': clienteId, // Cliente que añade el producto
@@ -836,7 +836,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
   // Función para obtener los productos desde el backend
   Future<void> fetchProductos() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/v1//categoria/${widget.categoriaId}'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/v1//categoria/${widget.categoriaId}'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -1159,7 +1159,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Future<void> fetchProductos() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/v1/products')); // Cambia según tu endpoint correcto
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/v1/products')); // Cambia según tu endpoint correcto
 
       print('Status code: ${response.statusCode}');
       print('Response body: ${response.body}');

@@ -131,24 +131,41 @@ class _InformesState extends State<Informes> {
     );
   }
 
-  // Función para abrir el selector de rango de fechas
-  Future<void> _selectDateRange() async {
-    DateTimeRange? picked = await showDateRangePicker(
-      context: context,
-      initialDateRange: fechaInicio != null && fechaFin != null
-          ? DateTimeRange(start: fechaInicio!, end: fechaFin!)
-          : null,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
+// Función para abrir el selector de rango de fechas con color personalizado
+Future<void> _selectDateRange() async {
+  DateTimeRange? picked = await showDateRangePicker(
+    context: context,
+    initialDateRange: fechaInicio != null && fechaFin != null
+        ? DateTimeRange(start: fechaInicio!, end: fechaFin!)
+        : null,
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2101),
+    builder: (BuildContext context, Widget? child) {
+      return Theme(
+        data: ThemeData.light().copyWith(
+          colorScheme: ColorScheme.light(
+            primary: Colors.red, // Color principal del DatePicker
+            onPrimary: Colors.white, // Color del texto sobre el color primario
+            onSurface: Colors.black54, // Color del texto y los iconos en la superficie
+            secondary: Color(0xFFFFCDD2), // Rojo claro para las fechas seleccionadas
+          ),
+          buttonTheme: ButtonThemeData(
+            textTheme: ButtonTextTheme.primary, // Texto en los botones
+          ),
+        ),
+        child: child!,
+      );
+    },
+  );
 
-    if (picked != null) {
-      setState(() {
-        fechaInicio = picked.start;
-        fechaFin = picked.end;
-      });
-    }
+  if (picked != null) {
+    setState(() {
+      fechaInicio = picked.start;
+      fechaFin = picked.end;
+    });
   }
+}
+
 
 Widget _buildInformeCard({
   required String title,
@@ -248,7 +265,7 @@ class _InformeVentasTotalesState extends State<InformeVentasTotales> {
           : '2024-12-31'; // Fecha predeterminada si no se selecciona
 
       final response = await http.get(
-        Uri.parse('http://192.168.247.186:8081/informes/ventas-totales?fechaInicio=$fechaInicio&fechaFin=$fechaFin'),
+        Uri.parse('http://192.168.39.186:8081/informes/ventas-totales?fechaInicio=$fechaInicio&fechaFin=$fechaFin'),
       );
 
       if (response.statusCode == 200) {
@@ -370,7 +387,7 @@ class _InformeProductosMasVendidosState extends State<InformeProductosMasVendido
 
       final response = await http.get(
         Uri.parse(
-          'http://192.168.247.186:8081/informes/productos-mas-vendidos?fechaInicio=$fechaInicio&fechaFin=$fechaFin',
+          'http://192.168.39.186:8081/informes/productos-mas-vendidos?fechaInicio=$fechaInicio&fechaFin=$fechaFin',
         ),
       );
 
@@ -465,6 +482,7 @@ class _InformeClientesActivosState extends State<InformeClientesActivos> {
   int clientesActivos = 0;
   int totalClientes = 0;
   bool isLoading = true;
+  List<dynamic> listaClientes = [];
 
   @override
   void initState() {
@@ -483,7 +501,7 @@ class _InformeClientesActivosState extends State<InformeClientesActivos> {
 
       final response = await http.get(
         Uri.parse(
-          'http://192.168.247.186:8081/informes/clientes-activos?fechaInicio=$fechaInicio&fechaFin=$fechaFin',
+          'http://192.168.39.186:8081/informes/clientes-activos?fechaInicio=$fechaInicio&fechaFin=$fechaFin',
         ),
       );
 
@@ -492,6 +510,7 @@ class _InformeClientesActivosState extends State<InformeClientesActivos> {
         setState(() {
           clientesActivos = data['clientesActivos'] ?? 0;
           totalClientes = data['totalClientes'] ?? 0;
+          listaClientes = data['detallesClientesActivos'] ?? [];
           isLoading = false;
         });
       } else {
@@ -562,11 +581,13 @@ class _InformeClientesActivosState extends State<InformeClientesActivos> {
                   const SizedBox(height: 10),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: clientesActivos, // Usa el número de clientes activos
+                      itemCount: listaClientes.length,
                       itemBuilder: (context, index) {
+                        print(listaClientes);
+                        final cliente = listaClientes[index];
                         return ListTile(
-                          title: Text('Cliente Activo #${index + 1}'),
-                          subtitle: Text('Email: cliente${index + 1}@example.com'),
+                          title: Text(cliente['nombres'] ?? 'Cliente sin nombre'),
+                          subtitle: Text('Email: ${cliente['email'] ?? 'Sin email'}'),
                           trailing: Icon(Icons.check_circle, color: Colors.green),
                         );
                       },

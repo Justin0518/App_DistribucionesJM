@@ -36,7 +36,7 @@ class _NavegarState extends State<Navegar> {
   // Función para obtener el número real de productos en el carrito desde el backend
   Future<void> fetchCarritoCount() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.247.186:8081/carrito/${widget.clienteId}'));
+      final response = await http.get(Uri.parse('http://192.168.39.186:8081/carrito/${widget.clienteId}'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -314,7 +314,7 @@ class _CambioContraseniaDialogState extends State<CambioContraseniaDialog> {
         isLoading = true;
       });
 
-      final url = Uri.parse('http://192.168.247.186:8081/clientes/cambiarContra');
+      final url = Uri.parse('http://192.168.39.186:8081/clientes/cambiarContra');
       final body = json.encode({
         'email': widget.email,
         'nuevaContraseña': nuevaContraseniaController.text,
